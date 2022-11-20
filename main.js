@@ -3,13 +3,13 @@
   const map = L.map("theMap").setView([44.650627, -63.59714], 14);
 
   const busIcon = L.icon({
-    iconUrl: "bus.png",
+    iconUrl: "/icons/bus.png",
     iconSize: [20, 50],
     iconAnchor: [10, 25],
     popupAnchor: [0, 0]
   });
   const locationIcon = L.icon({
-    iconUrl: "person.png",
+    iconUrl: "/icons/person.png",
     iconSize: [40, 40],
     iconAnchor: [15, 30],
     popupAnchor: [0, 0]
@@ -21,11 +21,14 @@
   }).addTo(map);
 
   const getLocation = document.querySelector("#getLocation");
+  const locateUser = L.marker([0, 0], { icon: locationIcon });
   getLocation.addEventListener("click", () => {
     map
-      .locate({ setView: true, watch: false, maxZoom: 15 })
+      .locate({ setView: true, watch: true, maxZoom: 15 })
       .on("locationfound", (e) => {
-        L.marker([e.latitude, e.longitude], { icon: locationIcon }).addTo(map).bindPopup("Your are here!");
+        locateUser.setLatLng(e.latlng);
+        locateUser.addTo(map).bindPopup("Your are here!");
+        // L.marker(e.latlng, { icon: locationIcon }).addTo(map).bindPopup("Your are here!");
       })
       .on("locationerror", (e) => {
         console.log(e);
