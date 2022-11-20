@@ -18,15 +18,18 @@ L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
   subdomains: ["mt0", "mt1", "mt2", "mt3"]
 }).addTo(map);
 
-map
-  .locate({ setView: false, watch: false })
-  .on("locationfound", (e) => {
-    L.marker([e.latitude, e.longitude]).addTo(map).bindPopup("Your are here!");
-  })
-  .on("locationerror", (e) => {
-    console.log(e);
-    alert("Location access denied.");
-  });
+const locationIcon = document.querySelector("#locationIcon");
+locationIcon.addEventListener("click", () => {
+  map
+    .locate({ setView: true, watch: false, maxZoom: 15 })
+    .on("locationfound", (e) => {
+      L.marker([e.latitude, e.longitude]).addTo(map).bindPopup("Your are here!");
+    })
+    .on("locationerror", (e) => {
+      console.log(e);
+      alert("Unable to get your location.");
+    });
+});
 
 // L.marker([44.65069, -63.596537], { icon: busIcon }).addTo(map).bindPopup("This is a sample popup. You can put any html structure in this including extra bus data. You can also swap this icon out for a custom icon. A png file has been provided for you to use if you wish.").openPopup();
 // })();
