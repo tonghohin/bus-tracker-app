@@ -15,7 +15,7 @@
     popupAnchor: [0, 0]
   });
 
-  L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
+  L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
     maxZoom: 20,
     subdomains: ["mt0", "mt1", "mt2", "mt3"]
   }).addTo(map);
@@ -33,17 +33,6 @@
         console.log(e);
         alert("Unable to get your location.");
       });
-  });
-
-  window.addEventListener("load", () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const userLocation = [position.coords.latitude, position.coords.longitude];
-        L.marker(userLocation, { icon: locationIcon }).addTo(map).bindPopup("Your are here!");
-      });
-    } else {
-      alert("Unable to get your location.");
-    }
   });
 
   const busRoutes = ["1", "2", "3", "4", "5", "6A", "6B", "6C", "7A", "7B", "8", "9A", "9B", "10", "11", "21", "22", "24", "25", "26", "28", "29", "30A", "30B", "39", "41", "51", "53", "54", "55", "56", "57", "58", "59", "61", "62", "63", "64", "65", "67", "68", "72", "82", "83", "84", "85", "86", "87", "88", "90", "91", "93", "123", "127", "135", "136", "137", "138", "158", "159", "161", "165", "168A", "168B", "178", "179", "182", "183", "185", "186", "194", "196", "320", "330", "370", "401", "415", "433"];
