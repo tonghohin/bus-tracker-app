@@ -18,43 +18,16 @@
         transition: transform 0.3s linear;
       }
       #getLocation {
-        position: fixed;
         top: 80px;
         left: 10px;
-        height: 30px;
-        width: 30px;
-        border-radius: 2px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        background-clip: padding-box;
-        background-color: white;
         background-image: url("location.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 22px 22px;
-        cursor: pointer;
-      }
-      #getLocation:hover {
-        background-color: #f4f4f4;
       }
       #searchBus {
-        position: fixed;
         top: 120px;
         left: 10px;
-        height: 30px;
-        width: 30px;
-        border-radius: 2px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        background-clip: padding-box;
-        background-color: white;
         background-image: url("bus.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 22px 22px;
-        cursor: pointer;
       }
-      #searchBus:hover {
-        background-color: #f4f4f4;
-      }
+
       form {
         position: absolute;
         top: 120px;
@@ -99,22 +72,24 @@
         opacity: 1;
       }
       #refresh {
-        position: fixed;
         top: 10px;
         right: 10px;
+        background-image: url("refresh.svg");
+      }
+      .icons {
+        position: fixed;
         height: 30px;
         width: 30px;
         border-radius: 2px;
         border: 2px solid rgba(0, 0, 0, 0.2);
         background-clip: padding-box;
         background-color: white;
-        background-image: url("refresh.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 22px 22px;
         cursor: pointer;
       }
-      #refresh:hover {
+      .icons:hover {
         background-color: #f4f4f4;
       }
     </style>
@@ -123,14 +98,14 @@
     <div id="map-wrapper" style="width: 100%; height: 100%; position: fixed">
       <div id="theMap" style="width: 100%; height: 100%; position: relative"></div>
     </div>
-    <div id="getLocation"></div>
-    <div id="searchBus"></div>
+    <div id="getLocation" class="icons"></div>
+    <div id="searchBus" class="icons"></div>
     <form>
       Bus Route:
       <select name="bus" id="bus"></select>
       <button type="submit"></button>
     </form>
-    <div id="refresh"></div>
+    <div id="refresh" class="icons"></div>
     <script src="main.js"></script>
   </body>
 </html>
