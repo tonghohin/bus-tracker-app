@@ -5,7 +5,13 @@ const map = L.map("theMap").setView([44.650627, -63.59714], 14);
 const busIcon = L.icon({
   iconUrl: "bus.png",
   iconSize: [20, 50],
-  iconAnchor: [20, 25],
+  iconAnchor: [10, 25],
+  popupAnchor: [0, 0]
+});
+const locationIcon = L.icon({
+  iconUrl: "person.png",
+  iconSize: [40, 40],
+  iconAnchor: [15, 30],
   popupAnchor: [0, 0]
 });
 
@@ -18,12 +24,12 @@ L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
   subdomains: ["mt0", "mt1", "mt2", "mt3"]
 }).addTo(map);
 
-const locationIcon = document.querySelector("#locationIcon");
-locationIcon.addEventListener("click", () => {
+const getLocation = document.querySelector("#getLocation");
+getLocation.addEventListener("click", () => {
   map
     .locate({ setView: true, watch: false, maxZoom: 15 })
     .on("locationfound", (e) => {
-      L.marker([e.latitude, e.longitude]).addTo(map).bindPopup("Your are here!");
+      L.marker([e.latitude, e.longitude], { icon: locationIcon }).addTo(map).bindPopup("Your are here!");
     })
     .on("locationerror", (e) => {
       console.log(e);
@@ -52,6 +58,7 @@ fetch("https://hrmbusapi.herokuapp.com/")
         },
         properties: {
           id: obj.id,
+          routeId: obj.vehicle.trip.routeId,
           bearing: obj.vehicle.position.bearing,
           popupContent: `Bus ${obj.vehicle.trip.routeId}`
         }
@@ -65,6 +72,10 @@ fetch("https://hrmbusapi.herokuapp.com/")
       },
       onEachFeature: function (feature, layer) {
         layer.bindPopup(feature.properties.popupContent);
+        layer.bindTooltip(feature.properties.routeId, {
+          permanent: true,
+          direction: "center"
+        });
       }
     }).addTo(map);
     console.log(busesLocations);

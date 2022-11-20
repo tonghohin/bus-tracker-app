@@ -6,6 +6,7 @@
     <title>Bus Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="bus.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="leaflet-rotatedmarker.js"></script>
     <style>
@@ -16,7 +17,7 @@
         -ms-transition: transform 0.3s linear;
         transition: transform 0.3s linear;
       }
-      #locationIcon {
+      #getLocation {
         position: fixed;
         top: 80px;
         left: 10px;
@@ -31,7 +32,7 @@
         background-size: 22px 22px;
         cursor: pointer;
       }
-      #locationIcon:hover {
+      #getLocation:hover {
         background-color: #f4f4f4;
       }
     </style>
@@ -40,7 +41,7 @@
     <div id="map-wrapper" style="width: 100%; height: 100%; position: fixed">
       <div id="theMap" style="width: 100%; height: 100%; position: relative"></div>
     </div>
-    <div id="locationIcon"></div>
+    <div id="getLocation"></div>
     <script src="main.js"></script>
   </body>
 </html>
