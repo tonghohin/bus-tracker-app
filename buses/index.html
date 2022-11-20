@@ -46,7 +46,7 @@
         border: 2px solid rgba(0, 0, 0, 0.2);
         background-clip: padding-box;
         background-color: white;
-        background-image: url("search.svg");
+        background-image: url("bus.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 22px 22px;
@@ -56,19 +56,27 @@
         background-color: #f4f4f4;
       }
       form {
-        position: fixed;
-        top: 160px;
-        left: 10px;
+        position: absolute;
+        top: 120px;
+        left: 45px;
         height: 30px;
+        width: 0;
+        overflow: hidden;
+        border-radius: 2px;
+        /* padding-left: 5px; */
         font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
         font-size: 14px;
-        color: #616161;
-        border-radius: 2px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
         background-clip: padding-box;
-        background-color: white;
+        background-color: #f4f4f4;
+        color: #616161;
         display: flex;
         align-items: center;
+        transition: 0.5s;
+      }
+      .showBusSearchField {
+        width: 160px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
         padding-left: 5px;
       }
       select:focus {
@@ -90,6 +98,25 @@
       button:hover {
         opacity: 1;
       }
+      #refresh {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        height: 30px;
+        width: 30px;
+        border-radius: 2px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background-clip: padding-box;
+        background-color: white;
+        background-image: url("refresh.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 22px 22px;
+        cursor: pointer;
+      }
+      #refresh:hover {
+        background-color: #f4f4f4;
+      }
     </style>
   </head>
   <body style="margin: 0px">
@@ -103,6 +130,7 @@
       <select name="bus" id="bus"></select>
       <button type="submit"></button>
     </form>
+    <div id="refresh"></div>
     <script src="main.js"></script>
   </body>
 </html>

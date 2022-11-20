@@ -37,26 +37,16 @@
   const select = document.querySelector("select");
   busRoutes.map((busNum) => (select.innerHTML += `<option value="${busNum}">${busNum}</option>`));
 
+  const searchBus = document.querySelector("#searchBus");
   const form = document.querySelector("form");
-  //   form.addEventListener("submit", (e) => {
-  //     e.preventDefault();
-  //     console.log(select.value);
-  //     if (busRoutes.includes(select.value)) {
-  //       fetch("https://hrmbusapi.herokuapp.com/")
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           const geoJSON = jsonToGeoJson(data);
-  //         });
+  searchBus.addEventListener("click", () => {
+    form.classList.toggle("showBusSearchField");
+  });
 
-  //       map.eachLayer((layer) => {
-  //         if (layer instanceof L.geoJSON) {
-  //           layer.remove();
-  //         }
-  //       });
-  //     } else {
-  //       alert("No such bus route :(");
-  //     }
-  //   });
+  const refresh = document.querySelector("#refresh");
+  refresh.addEventListener("click", () => {
+    window.location.reload();
+  });
 
   // L.marker([44.65069, -63.596537], { icon: busIcon }).addTo(map).bindPopup("This is a sample popup. You can put any html structure in this including extra bus data. You can also swap this icon out for a custom icon. A png file has been provided for you to use if you wish.").openPopup();
 
