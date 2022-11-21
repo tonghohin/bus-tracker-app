@@ -132,7 +132,7 @@
 // For converting the API JSON to geoJSON.
 function jsonToGeoJson(json) {
   const filteredData = json.entity.filter((obj) => parseInt(obj.vehicle.trip.routeId) < 11);
-  const geoJSON = json.entity.map((obj) => {
+  const geoJSON = filteredData.map((obj) => {
     return {
       type: "Feature",
       geometry: {
