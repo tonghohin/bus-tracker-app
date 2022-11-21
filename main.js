@@ -4,13 +4,13 @@
 
   // Icon layers for the bus and user's location icons, to be added to the map.
   const busIcon = L.icon({
-    iconUrl: "../icons/bus.png",
+    iconUrl: "icons/bus.png",
     iconSize: [20, 50],
     iconAnchor: [10, 25],
     popupAnchor: [0, 0]
   });
   const locationIcon = L.icon({
-    iconUrl: "../icons/person.png",
+    iconUrl: "icons/person.png",
     iconSize: [40, 40],
     iconAnchor: [15, 30],
     popupAnchor: [0, 0]
