@@ -24,7 +24,7 @@
 
   // When the getLocation icon is clicked, display an icon to indicate the user's location. If the L.marker() is put inside the eventlistener function, it will keep creating new icons on the map. Use setLatLng() instead to update the icon's position.
   const getLocation = document.querySelector("#getLocation");
-  const locateUser = L.marker([0, 0], { icon: locationIcon });
+  const locateUser = L.marker(null, { icon: locationIcon });
   getLocation.addEventListener("click", () => {
     map
       .locate({ setView: false, watch: true, maxZoom: 15 })
