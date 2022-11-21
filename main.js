@@ -27,7 +27,7 @@
   const locateUser = L.marker([0, 0], { icon: locationIcon });
   getLocation.addEventListener("click", () => {
     map
-      .locate({ setView: true, watch: true, maxZoom: 15 })
+      .locate({ setView: false, watch: true, maxZoom: 15 })
       .on("locationfound", (e) => {
         locateUser.setLatLng(e.latlng);
         locateUser.addTo(map).bindPopup("Your are here!");
