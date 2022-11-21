@@ -27,7 +27,7 @@
   const locateUser = L.marker(null, { icon: locationIcon });
   getLocation.addEventListener("click", () => {
     map
-      .locate({ setView: false, watch: true, maxZoom: 15 })
+      .locate({ setView: false, watch: true, maxZoom: 15, enableHighAccuracy: true })
       .on("locationfound", (e) => {
         locateUser.setLatLng(e.latlng);
         locateUser.addTo(map).bindPopup("Your are here!");
@@ -58,10 +58,8 @@
 
   // Initial geoJSON layer, pass in an null geoJSON object.
   const busesLocations = L.geoJSON(null, {
-    // Change to a custom bus icon.
-    pointToLayer: (feature, latlng) => {
-      return L.marker(latlng, { icon: busIcon, rotationAngle: feature.properties.bearing });
-    },
+    // Setup the custom bus icon.
+    pointToLayer: (feature, latlng) => L.marker(latlng, { icon: busIcon, rotationAngle: feature.properties.bearing }),
     // Setup the popups and tooltips for the bus icons.
     onEachFeature: (feature, layer) => {
       layer.bindPopup(feature.properties.popupContent);
@@ -108,7 +106,7 @@
 
     // Check against the busRoutes array to ensure the selected bus route exists, alert user if it doesn't. (With the dropdown menu, such circumstance should not happen. Just in case of malicious users.)
     if (busRoutes.includes(select.value)) {
-      // Clear all the layers (bus icons) of the geoJSON layer.
+      // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
 
       fetch("https://hrmbusapi.herokuapp.com/")
