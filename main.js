@@ -29,6 +29,7 @@
     map
       .locate({ setView: false, watch: true, maxZoom: 15, enableHighAccuracy: true })
       .on("locationfound", (e) => {
+        map.setView(e.latlng);
         locateUser.setLatLng(e.latlng);
         locateUser.addTo(map).bindPopup("Your are here!");
       })
