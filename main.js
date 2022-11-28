@@ -85,6 +85,7 @@
       console.log("Initial GeoJSON", geoJSON);
 
       busesLocations.addData(geoJSON).addTo(map);
+      console.log("busesLocations Layers:", busesLocations);
     });
 
   // New API fetch for every 7 seconds, update the buses' positions with setLatLng() and setRotationAngle().
