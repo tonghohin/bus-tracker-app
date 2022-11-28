@@ -113,22 +113,20 @@
     // Check against the busRoutes array to ensure the selected bus route exists, alert user if it doesn't. (With the dropdown menu, such circumstance should not happen. Just in case of malicious users.)
     if (busRoutes.includes(select.value)) {
       // Clear all the existing layers (bus icons) of the geoJSON layer.
-      busesLocations.clearLayers();
-
-      fetch("https://hrmbusapi.herokuapp.com/")
-        .then((res) => res.json())
-        .then((data) => {
-          // Construct the geoJSON objects only for the selected bus route.
-          const geoJSON = jsonToGeoJsonForSearch(data, select.value);
-          console.log("Search result geoJSON:", geoJSON);
-
-          // The geoJSON objects may return nothing when the bus is not operating at that time, alert user if that's the case.
-          if (geoJSON.length !== 0) {
-            busesLocations.addData(geoJSON).addTo(map);
-          } else {
-            alert("The selected bus route is not operating at this time.");
-          }
-        });
+      // busesLocations.clearLayers();
+      // fetch("https://hrmbusapi.herokuapp.com/")
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     // Construct the geoJSON objects only for the selected bus route.
+      //     const geoJSON = jsonToGeoJsonForSearch(data, select.value);
+      //     console.log("Search result geoJSON:", geoJSON);
+      //     // The geoJSON objects may return nothing when the bus is not operating at that time, alert user if that's the case.
+      //     if (geoJSON.length !== 0) {
+      //       busesLocations.addData(geoJSON).addTo(map);
+      //     } else {
+      //       alert("The selected bus route is not operating at this time.");
+      //     }
+      //   });
     } else {
       alert("No such bus route :(");
     }
