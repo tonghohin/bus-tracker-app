@@ -2,25 +2,25 @@
   // Create map in leaflet and tie it to the div called 'theMap'.
   const map = L.map("theMap").setView([44.650627, -63.59714], 14);
 
-  // Icon layers for the bus and user's location icons, to be added to the map.
-  const busIcon = L.icon({
-    iconUrl: "icons/bus.png",
-    iconSize: [20, 50],
-    iconAnchor: [10, 25],
-    popupAnchor: [0, 0]
-  });
-  const locationIcon = L.icon({
-    iconUrl: "icons/person.png",
-    iconSize: [40, 40],
-    iconAnchor: [15, 30],
-    popupAnchor: [0, 0]
-  });
-
   // Base map layer for the map.
   L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
     maxZoom: 20,
     subdomains: ["mt0", "mt1", "mt2", "mt3"]
   }).addTo(map);
+
+  // Icon layers for the bus and user's location icons, to be added to the map.
+  const busIcon = L.icon({
+    iconUrl: "./icons/bus.png",
+    iconSize: [20, 50],
+    iconAnchor: [10, 25],
+    popupAnchor: [0, 0]
+  });
+  const locationIcon = L.icon({
+    iconUrl: "./icons/person.png",
+    iconSize: [40, 40],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, 0]
+  });
 
   // When the getLocation icon is clicked, display an icon to indicate the user's location. If the L.marker() is put inside the eventlistener function, it will keep creating new icons on the map. Use setLatLng() instead to update the icon's position.
   const getLocation = document.querySelector("#getLocation");
