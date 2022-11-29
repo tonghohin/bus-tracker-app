@@ -527,8 +527,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: rgb(243, 217, 111); /* Custom style for popup */
-  border: 1px solid rgb(255, 255, 255); /* Custom style for popup */
+  background: rgb(226, 226, 226); /* Custom style for popup */
+  border: 1px solid rgb(157, 157, 157); /* Custom style for popup */
   color: #333;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
