@@ -25,18 +25,23 @@
   // When the getLocation icon is clicked, display an icon to indicate the user's location. If the L.marker() is put inside the eventlistener function, it will keep creating new icons on the map. Use setLatLng() instead to update the icon's position.
   const getLocation = document.querySelector("#getLocation");
   const locateUser = L.marker(null, { icon: locationIcon });
-  getLocation.addEventListener("click", () => {
+  getLocation.addEventListener("click", handleGetLocation);
+
+  function handleGetLocation() {
     map
       .locate({ setView: false, watch: true, maxZoom: 15, enableHighAccuracy: true })
       .on("locationfound", (e) => {
+        map.setView(e.latlng);
         locateUser.setLatLng(e.latlng);
         locateUser.addTo(map).bindPopup("Your are here!");
+        // Remove the 'click' event listener to prevent error
+        getLocation.removeEventListener("click", handleGetLocation);
       })
       .on("locationerror", (e) => {
         console.log(e);
         alert("Unable to get your location.");
       });
-  });
+  }
 
   // An array of all the HRM bus bus routes, add them as <option> tags into the <select> tag in the HTML file.
   const busRoutes = ["1", "2", "3", "4", "5", "6A", "6B", "6C", "7A", "7B", "8", "9A", "9B", "10", "11", "21", "22", "24", "25", "26", "28", "29", "30A", "30B", "39", "41", "51", "53", "54", "55", "56", "57", "58", "59", "61", "62", "63", "64", "65", "67", "68", "72", "82", "83", "84", "85", "86", "87", "88", "90", "91", "93", "123", "127", "135", "136", "137", "138", "158", "159", "161", "165", "168A", "168B", "178", "179", "182", "183", "185", "186", "194", "196", "320", "330", "370", "401", "415", "433"];
@@ -80,6 +85,7 @@
       console.log("Initial GeoJSON", geoJSON);
 
       busesLocations.addData(geoJSON).addTo(map);
+      console.log("busesLocations Layers:", busesLocations);
     });
 
   // New API fetch for every 7 seconds, update the buses' positions with setLatLng() and setRotationAngle().
@@ -107,22 +113,20 @@
     // Check against the busRoutes array to ensure the selected bus route exists, alert user if it doesn't. (With the dropdown menu, such circumstance should not happen. Just in case of malicious users.)
     if (busRoutes.includes(select.value)) {
       // Clear all the existing layers (bus icons) of the geoJSON layer.
-      busesLocations.clearLayers();
-
-      fetch("https://hrmbusapi.herokuapp.com/")
-        .then((res) => res.json())
-        .then((data) => {
-          // Construct the geoJSON objects only for the selected bus route.
-          const geoJSON = jsonToGeoJsonForSearch(data, select.value);
-          console.log("Search result geoJSON:", geoJSON);
-
-          // The geoJSON objects may return nothing when the bus is not operating at that time, alert user if that's the case.
-          if (geoJSON.length !== 0) {
-            busesLocations.addData(geoJSON).addTo(map);
-          } else {
-            alert("The selected bus route is not operating at this time.");
-          }
-        });
+      // busesLocations.clearLayers();
+      // fetch("https://hrmbusapi.herokuapp.com/")
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     // Construct the geoJSON objects only for the selected bus route.
+      //     const geoJSON = jsonToGeoJsonForSearch(data, select.value);
+      //     console.log("Search result geoJSON:", geoJSON);
+      //     // The geoJSON objects may return nothing when the bus is not operating at that time, alert user if that's the case.
+      //     if (geoJSON.length !== 0) {
+      //       busesLocations.addData(geoJSON).addTo(map);
+      //     } else {
+      //       alert("The selected bus route is not operating at this time.");
+      //     }
+      //   });
     } else {
       alert("No such bus route :(");
     }
@@ -132,6 +136,7 @@
 // For converting the API JSON to geoJSON.
 function jsonToGeoJson(json) {
   const filteredData = json.entity.filter((obj) => parseInt(obj.vehicle.trip.routeId) < 11);
+
   const geoJSON = filteredData.map((obj) => {
     return {
       type: "Feature",
