@@ -492,7 +492,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   border-radius: 5px;
 }
 .leaflet-popup-content {
-  margin: 8px 16px 8px 8px; /* Custom style for popup */
+  margin: 5px 14px 5px 5px; /* Custom style for popup */
   line-height: 1.3;
   font-size: 13px;
   font-size: 1.08333em;
