@@ -536,8 +536,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 .leaflet-container a.leaflet-popup-close-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -3px; /* Custom style for popup */
+  right: -3px; /* Custom style for popup */
   border: none;
   text-align: center;
   width: 24px;
