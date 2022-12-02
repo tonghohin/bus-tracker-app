@@ -76,7 +76,7 @@
   });
 
   // Initial API fetch, use addData() to add the geoJSON objects to the geoJSON layer.
-  fetch("https://hrmbusapi.herokuapp.com/")
+  fetch("https://hrmbuses.azurewebsites.net/")
     .then((res) => res.json())
     .then((data) => {
       console.log("Whole JSON from the API:", data);
@@ -90,7 +90,7 @@
 
   // New API fetch for every 7 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
-    fetch("https://hrmbusapi.herokuapp.com/")
+    fetch("https://hrmbuses.azurewebsites.net/")
       .then((res) => res.json())
       .then((data) => {
         const geoJSON = jsonToGeoJson(data);
@@ -115,7 +115,7 @@
       // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
 
-      fetch("https://hrmbusapi.herokuapp.com/")
+      fetch("https://hrmbuses.azurewebsites.net/")
         .then((res) => res.json())
         .then((data) => {
           // Construct the geoJSON objects only for the selected bus route.
