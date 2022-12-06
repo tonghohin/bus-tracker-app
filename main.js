@@ -22,6 +22,42 @@
     popupAnchor: [0, 0]
   });
 
+  // const testing = [
+  //   {
+  //     type: "Feature",
+  //     geometry: {
+  //       type: "LineString",
+  //       coordinates: [
+  //         [44.650627, -63.59714],
+  //         [44.670519, -63.574072],
+  //         [44.643009, -63.576972]
+  //       ]
+  //     },
+  //     properties: {}
+  //   },
+  //   {
+  //     type: "Feature",
+  //     geometry: {
+  //       type: "LineString",
+  //       coordinates: [
+  //         [44.647203, -63.574125],
+  //         [44.643009, -63.576972]
+  //       ]
+  //     },
+  //     properties: {}
+  //   }
+  // ];
+
+  // L.geoJSON(testing, {
+  //   style: () => {
+  //     return {
+  //       stroke: true,
+  //       color: "red",
+  //       weight: 10
+  //     };
+  //   }
+  // }).addTo(map);
+
   // When the getLocation icon is clicked, display an icon to indicate the user's location. If the L.marker() is put inside the eventlistener function, it will keep creating new icons on the map. Use setLatLng() instead to update the icon's position.
   const getLocation = document.querySelector("#getLocation");
   const locateUser = L.marker(null, { icon: locationIcon });
@@ -76,17 +112,17 @@
   });
 
   // Initial API fetch, use addData() to add the geoJSON objects to the geoJSON layer.
-  fetch("https://hrmbuses.azurewebsites.net/")
+  fetch("https://hrmbusapi.herokuapp.com/")
     .then((res) => res.json())
     .then((data) => {
       console.log("Whole JSON from the API:", data);
 
-      const geoJSON = jsonToGeoJson(data);
-      console.log("Initial GeoJSON", geoJSON);
+  //     const geoJSON = jsonToGeoJson(data);
+  //     console.log("Initial GeoJSON", geoJSON);
 
-      busesLocations.addData(geoJSON).addTo(map);
-      console.log("busesLocations Layers:", busesLocations);
-    });
+  //     busesLocations.addData(geoJSON).addTo(map);
+  //     console.log("busesLocations Layers:", busesLocations);
+  //   });
 
   // New API fetch for every 7 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
@@ -115,7 +151,7 @@
       // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
 
-      fetch("https://hrmbuses.azurewebsites.net/")
+      fetch("https://hrmbusapi.herokuapp.com/")
         .then((res) => res.json())
         .then((data) => {
           // Construct the geoJSON objects only for the selected bus route.
@@ -287,7 +323,7 @@ const routeDestinations = [
   { routeId: "7B", destination: "7B SCOTIA SQUARE VIA ROBIE", directionId: 0 },
   { routeId: "7B", destination: "7B NOVALEA VIA GOTTINGEN", directionId: 1 },
   { routeId: "9A", destination: "9A DOWNTOWN VIA SPRING GARDEN", directionId: 0 },
-  { routeId: "9A", destination: "9A GREYSTONE- FOTHERBY VIA MUMFORD", directionId: 1 },
+  { routeId: "9A", destination: "9A GREYSTONE FOTHERBY VIA MUMFORD", directionId: 1 },
   { routeId: "9B", destination: "9B DOWNTOWN VIA SPRING GARDEN", directionId: 0 },
   { routeId: "9B", destination: "9B HERRING COVE VIA MUMFORD TERMINAL", directionId: 1 }
 ];
@@ -313,6 +349,7 @@ function jsonToGeoJson(json, busRoute = false) {
       },
       properties: {
         id: obj.id,
+        show: true,
         routeId: obj.vehicle.trip.routeId,
         directionId: obj.vehicle.trip.directionId,
         bearing: obj.vehicle.position.bearing,
