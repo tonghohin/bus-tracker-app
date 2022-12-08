@@ -682,3 +682,85 @@ svg.leaflet-image-layer.leaflet-interactive path {
     print-color-adjust: exact;
   }
 }
+
+/* For bus moves smoothly */
+.leaflet-marker-pane > * {
+  -webkit-transition: transform 0.3s linear;
+  -moz-transition: transform 0.3s linear;
+  -o-transition: transform 0.3s linear;
+  -ms-transition: transform 0.3s linear;
+  transition: transform 0.3s linear;
+}
+#getLocation {
+  top: 80px;
+  left: 10px;
+  background-image: url("./icons/location.svg");
+}
+#searchBus {
+  top: 120px;
+  left: 10px;
+  background-image: url("./icons/bus.svg");
+}
+form {
+  position: absolute;
+  top: 120px;
+  left: 45px;
+  height: 30px;
+  width: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+  background-clip: padding-box;
+  background-color: #f4f4f4;
+  color: #616161;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+}
+.showBusSearchField {
+  width: 160px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  padding-left: 5px;
+}
+select:focus {
+  outline: 0;
+}
+button {
+  height: 100%;
+  width: 30px;
+  margin: 0;
+  background-image: url("./icons/search.svg");
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  background-color: transparent;
+  background-position: center center;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+}
+button:hover {
+  opacity: 1;
+}
+#refresh {
+  top: 10px;
+  right: 10px;
+  background-image: url("./icons/refresh.svg");
+}
+.icons {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  border-radius: 2px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+  cursor: pointer;
+}
+.icons:hover {
+  background-color: #f4f4f4;
+}
