@@ -123,6 +123,36 @@
   });
 })();
 
+// For converting the API JSON to geoJSON. The "busRoute" parameter should only be passed in when the user searches a certain bus route, when its not passed in, the default value is false.
+function jsonToGeoJson(json, busRoute = false) {
+  let filteredData;
+  if (busRoute) {
+    // Only get the data of the bus route that's searched by the user
+    filteredData = json.entity.filter((obj) => obj.vehicle.trip.routeId === busRoute);
+  } else {
+    // Get the 1 - 10 bus route data
+    filteredData = json.entity.filter((obj) => parseInt(obj.vehicle.trip.routeId) < 11);
+  }
+  const geoJSON = filteredData.map((obj) => {
+    return {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [obj.vehicle.position.longitude, obj.vehicle.position.latitude]
+      },
+      properties: {
+        id: obj.id,
+        show: true,
+        routeId: obj.vehicle.trip.routeId,
+        directionId: obj.vehicle.trip.directionId,
+        bearing: obj.vehicle.position.bearing,
+        popupContent: getDestination(obj.vehicle.trip.routeId, obj.vehicle.trip.directionId)
+      }
+    };
+  });
+  return geoJSON;
+}
+
 // An array of the destinations of each route.
 const routeDestinations = [
   { routeId: "1", destination: "1 SPRING GARDEN TO MUMFORD TERM", directionId: 0 },
@@ -280,36 +310,6 @@ const routeDestinations = [
   { routeId: "9B", destination: "9B DOWNTOWN VIA SPRING GARDEN", directionId: 0 },
   { routeId: "9B", destination: "9B HERRING COVE VIA MUMFORD TERMINAL", directionId: 1 }
 ];
-
-// For converting the API JSON to geoJSON. The "busRoute" parameter should only be passed in when the user searches a certain bus route, when its not passed in, the default value is false.
-function jsonToGeoJson(json, busRoute = false) {
-  let filteredData;
-  if (busRoute) {
-    // Only get the data of the bus route that's searched by the user
-    filteredData = json.entity.filter((obj) => obj.vehicle.trip.routeId === busRoute);
-  } else {
-    // Get the 1 - 10 bus route data
-    filteredData = json.entity.filter((obj) => parseInt(obj.vehicle.trip.routeId) < 11);
-  }
-  const geoJSON = filteredData.map((obj) => {
-    return {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [obj.vehicle.position.longitude, obj.vehicle.position.latitude]
-      },
-      properties: {
-        id: obj.id,
-        show: true,
-        routeId: obj.vehicle.trip.routeId,
-        directionId: obj.vehicle.trip.directionId,
-        bearing: obj.vehicle.position.bearing,
-        popupContent: getDestination(obj.vehicle.trip.routeId, obj.vehicle.trip.directionId)
-      }
-    };
-  });
-  return geoJSON;
-}
 
 // For getting the destination of the bus route by matching with the routeDestinations array. Since some bus routes in the API JSON don't have a directionId and I'll get "undefined" when I try to access their directionId, so the "busDirection" has a default value of 0 when the directionId is "undefined".
 function getDestination(busRoute, busDirection = 0) {
