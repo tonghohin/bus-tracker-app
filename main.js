@@ -77,22 +77,16 @@
   fetch("https://hrmbuses.azurewebsites.net")
     .then((res) => res.json())
     .then((data) => {
-      console.log("Whole JSON from the API:", data);
-
       const geoJSON = jsonToGeoJson(data);
-      console.log("Initial GeoJSON", geoJSON);
-
       busesLocations.addData(geoJSON).addTo(map);
-      console.log("busesLocations Layers:", busesLocations);
     });
 
-  // New API fetch for every 7 seconds, update the buses' positions with setLatLng() and setRotationAngle().
+  // New API fetch for every 5 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
     fetch("https://hrmbuses.azurewebsites.net/")
       .then((res) => res.json())
       .then((data) => {
         const geoJSON = jsonToGeoJson(data);
-
         busesLocations.eachLayer((bus) => {
           geoJSON.map((obj) => {
             if (obj.properties.id === bus.feature.properties.id) {
@@ -102,17 +96,15 @@
           });
         });
       });
-  }, 7000);
+  }, 5000);
 
   // When the search bus route form is submitted, fetch API and display only the postion of the selected bus route.
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
     // Check against the busRoutes array to ensure the selected bus route exists, alert user if it doesn't. (With the dropdown menu, such circumstance should not happen. Just in case of malicious users.)
     if (busRoutes.includes(select.value)) {
       // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
-
       fetch("https://hrmbuses.azurewebsites.net")
         .then((res) => res.json())
         .then((data) => {
@@ -292,15 +284,13 @@ const routeDestinations = [
 // For converting the API JSON to geoJSON. The "busRoute" parameter should only be passed in when the user searches a certain bus route, when its not passed in, the default value is false.
 function jsonToGeoJson(json, busRoute = false) {
   let filteredData;
-
   if (busRoute) {
     // Only get the data of the bus route that's searched by the user
     filteredData = json.entity.filter((obj) => obj.vehicle.trip.routeId === busRoute);
   } else {
-    // Get all the bus route data
+    // Get the 1 - 10 bus route data
     filteredData = json.entity.filter((obj) => parseInt(obj.vehicle.trip.routeId) < 11);
   }
-
   const geoJSON = filteredData.map((obj) => {
     return {
       type: "Feature",
