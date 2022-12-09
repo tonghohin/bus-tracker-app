@@ -74,7 +74,7 @@
   });
 
   // Initial API fetch, use addData() to add the geoJSON objects to the geoJSON layer.
-  fetch("https://hrmbuses.azurewebsites.net")
+  fetch("https://hrmbusapi.onrender.com/")
     .then((res) => res.json())
     .then((data) => {
       const geoJSON = jsonToGeoJson(data);
@@ -83,7 +83,7 @@
 
   // New API fetch for every 5 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
-    fetch("https://hrmbuses.azurewebsites.net/")
+    fetch("https://hrmbusapi.onrender.com/")
       .then((res) => res.json())
       .then((data) => {
         const geoJSON = jsonToGeoJson(data);
@@ -105,7 +105,7 @@
     if (busRoutes.includes(select.value)) {
       // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
-      fetch("https://hrmbuses.azurewebsites.net")
+      fetch("https://hrmbusapi.onrender.com/")
         .then((res) => res.json())
         .then((data) => {
           // Construct the geoJSON objects only for the selected bus route.
