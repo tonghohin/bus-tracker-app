@@ -96,7 +96,7 @@
           });
         });
       });
-  }, 5000);
+  }, 10000);
 
   // When the search bus route form is submitted, fetch API and display only the postion of the selected bus route.
   form.addEventListener("submit", (e) => {
