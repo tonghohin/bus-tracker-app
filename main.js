@@ -81,7 +81,7 @@
       busesLocations.addData(geoJSON).addTo(map);
     });
 
-  // New API fetch for every 5 seconds, update the buses' positions with setLatLng() and setRotationAngle().
+  // New API fetch for every 10 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
     fetch("https://hrmbusapi.onrender.com/")
       .then((res) => res.json())
