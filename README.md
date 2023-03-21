@@ -1,6 +1,6 @@
 # Bus Tracker App
 
-This is an application that tracks and shows the positions of all the Halifax buses on the road! See it in action at https://tonghohin.github.io/busTrackerApp/
+This is an application that tracks and shows the positions of all the Halifax buses on the road!
 
 ## Features
 
