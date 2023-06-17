@@ -83,7 +83,7 @@
 
   // New API fetch for every 10 seconds, update the buses' positions with setLatLng() and setRotationAngle().
   setInterval(() => {
-    fetch("https://hrmbusapi.onrender.com/")
+    fetch("https://7hpdqkiu7ueqh3axzbkfuhckdm0wlvsc.lambda-url.us-east-1.on.aws")
       .then((res) => res.json())
       .then((data) => {
         const geoJSON = jsonToGeoJson(data);
