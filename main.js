@@ -105,7 +105,7 @@
     if (busRoutes.includes(select.value)) {
       // Clear all the existing layers (bus icons) of the geoJSON layer.
       busesLocations.clearLayers();
-      fetch("https://hrmbusapi.onrender.com/")
+      fetch("https://7hpdqkiu7ueqh3axzbkfuhckdm0wlvsc.lambda-url.us-east-1.on.aws")
         .then((res) => res.json())
         .then((data) => {
           // Construct the geoJSON objects only for the selected bus route.
