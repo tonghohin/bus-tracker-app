@@ -18,6 +18,7 @@ See it in action at https://halifaxbus.cyclic.app
 -   GeoJSON
 -   GTFS
 -   Express
+-   Cyclic
 
 ## Contact
 
