@@ -15,6 +15,8 @@ This is an application that tracks and shows the positions of all the Halifax bu
 - JavaScript
 - Leaflet.js
 - GeoJSON
+- GTFS
+- AWS Lambda
 
 ## Contact
 
