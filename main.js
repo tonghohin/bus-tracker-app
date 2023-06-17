@@ -74,7 +74,7 @@
   });
 
   // Initial API fetch, use addData() to add the geoJSON objects to the geoJSON layer.
-  fetch("https://hrmbusapi.onrender.com/")
+  fetch("https://7hpdqkiu7ueqh3axzbkfuhckdm0wlvsc.lambda-url.us-east-1.on.aws")
     .then((res) => res.json())
     .then((data) => {
       const geoJSON = jsonToGeoJson(data);
