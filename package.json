@@ -1,0 +1,16 @@
+{
+    "name": "bustrackerapp",
+    "version": "1.0.0",
+    "description": "This is an application that tracks and shows the positions of all the Halifax buses on the road! See it in action at https://tonghohin.github.io/busTrackerApp/",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2",
+        "gtfs-realtime-bindings": "^1.1.1"
+    }
+}

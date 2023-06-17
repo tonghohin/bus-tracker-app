@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="./icons/favicon-bus.png" type="image/x-icon" />
-    <title>HRM Bus tracker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
-    <!-- Leaflet deafult CSS -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" /> -->
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="bus.css" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-    <script src="leaflet-rotatedmarker.js"></script>
-    <script src="./main.js" defer></script>
-  </head>
-  <body style="margin: 0px">
-    <!-- Map container -->
-    <div id="map-wrapper" style="width: 100%; height: 100%; position: fixed">
-      <div id="theMap" style="width: 100%; height: 100%; position: relative"></div>
-    </div>
-    <!-- Locate user button -->
-    <div id="getLocation" class="icons"></div>
-    <!-- Search bus route button -->
-    <div id="searchBus" class="icons"></div>
-    <!-- Search bus route form -->
-    <form>
-      Bus Route:
-      <select name="bus" id="bus"></select>
-      <button type="submit"></button>
-    </form>
-    <!-- Refresh page button -->
-    <div id="refresh" class="icons"></div>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="shortcut icon" href="./icons/favicon-bus.png" type="image/x-icon" />
+        <title>HRM Bus tracker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+        <!-- Leaflet deafult CSS -->
+        <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" /> -->
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="bus.css" />
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+        <script src="leaflet-rotatedmarker.js"></script>
+        <script src="./client.js" defer></script>
+    </head>
+    <body style="margin: 0px">
+        <!-- Map container -->
+        <div id="map-wrapper" style="width: 100%; height: 100%; position: fixed">
+            <div id="theMap" style="width: 100%; height: 100%; position: relative"></div>
+        </div>
+        <!-- Locate user button -->
+        <div id="getLocation" class="icons"></div>
+        <!-- Search bus route button -->
+        <div id="searchBus" class="icons"></div>
+        <!-- Search bus route form -->
+        <form>
+            Bus Route:
+            <select name="bus" id="bus"></select>
+            <button type="submit"></button>
+        </form>
+        <!-- Refresh page button -->
+        <div id="refresh" class="icons"></div>
+    </body>
 </html>
