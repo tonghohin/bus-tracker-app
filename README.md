@@ -1,7 +1,7 @@
 # Bus Tracker App
 
 This is an application that tracks and shows the positions of all the Halifax buses on the road!
-See it in action at https://halifaxbus.cyclic.app
+See it in action at https://halifax-bus-tracker.vercel.app
 
 ## Features
 
