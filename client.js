@@ -312,5 +312,5 @@ const routeDestinations = [
 
 // For getting the destination of the bus route by matching with the routeDestinations array. Since some bus routes in the API JSON don't have a directionId and I'll get "undefined" when I try to access their directionId, so the "busDirection" has a default value of 0 when the directionId is "undefined".
 function getDestination(busRoute, busDirection = 0) {
-    return routeDestinations.filter((obj) => obj.routeId === busRoute && obj.directionId === busDirection)[0].destination;
+    return routeDestinations.filter((obj) => obj.routeId === busRoute && obj.directionId === busDirection)[0]?.destination || "";
 }
